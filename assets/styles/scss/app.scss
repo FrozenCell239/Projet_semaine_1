@@ -1,0 +1,66 @@
+@import './_variables.scss';
+@import './_mixins.scss';
+@import './_placeholders.scss';
+//@import './_animations.scss';
+
+/* Generals */
+:root{
+    font-size: 24px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: $font_main_color;
+}
+html, body{
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+}
+body{
+    background-color: $background_color;
+    position: absolute;
+}
+main{
+    display: flex;
+    flex-direction: column;
+    padding: 0 100px 0 100px;
+    align-items: center;
+    p, h1{
+        text-align: center;
+        width: 80%;
+    }
+}
+h1{
+    font-size: 1.9rem;
+    margin: 10px 0 10px 0;
+}
+a{
+    color: $font_main_color;
+}
+
+/* Post cards */
+article{
+    box-shadow: 0 0 1rem gray;
+    border-radius: $default_rounding;
+    border: solid 5px #aaaaaa;
+    padding: 1rem 2rem 1rem 2rem;
+    p{
+        font-size: 20px;
+    }
+    h2{
+        padding: 0;
+        margin: 0;
+    }
+}
+
+/* Flash message boxes */
+#flash-zone{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 10rem 0 10rem;
+    min-height: 5vh;
+    background-color: $background_color;
+}
+.danger-flash{@include flash-box(#aa3939, #550000);}
+.info-flash{@include flash-box(#2e4372, #061639);}
+.warning-flash{@include flash-box(#aa8439, #553900);}
+.success-flash{@include flash-box(#2e882e, #004400);}

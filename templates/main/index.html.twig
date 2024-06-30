@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<h1>Découvrez nos dernières actualités !</h1>
+{% for post in posts %}
+    {%
+        include "_partials/_post_card.html.twig"
+        with {
+            'title' : post.title,
+            'summary' : post.summary,
+            'created_at' : post.createdAt|date("d/m/Y"),
+            'author' : post.author.fullName,
+            'href' : path('app_see_post', {slug: post.slug})
+        }
+    %}
+{% endfor %}
+{% endblock %}

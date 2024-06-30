@@ -1,0 +1,8 @@
+{% for label, messages in app.flashes %}
+    {% for message in messages %}
+    <div class="{{ label }}-flash" id="flash-{{ loop.index0 }}">
+        <p>{{ message|raw }}</p>
+        <button onclick="flashDismiss('{{ loop.index0 }}')">&times;</button>
+    </div>
+    {% endfor %}
+{% endfor %}

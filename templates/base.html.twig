@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}The Guitar Eel !{% endblock %}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
+        {% block stylesheets %}{% endblock %}
+        {% block javascripts %}
+            <script defer>
+                // Flash dismiss
+                function flashDismiss(id){
+                    document.getElementById(`flash-${id}`).remove();
+                };
+            </script>
+            {% block importmap %}{{ importmap('app') }}{% endblock %}
+        {% endblock %}
+    </head>
+    <body>
+        <header>
+            <nav>
+                <a href="{{ path('app_index') }}">Accueil</a>
+                <a href="">Liste</a>
+                <a href="{{ path('app_contact') }}">Contact</a>
+                {% if app.user %}
+                <a href="{{ path('app_logout') }}" style="float: right;">Déconnexion</a>
+                <a href="{{ path('app_post_index') }}" style="float: right;">Mes posts</a>
+                {% else %}
+                <a href="{{ path('app_login') }}" style="float: right;">Se connecter</a>
+                <a href="{{ path('app_register') }}" style="float: right;">S'inscrire</a>
+                {% endif %}
+            </nav>
+            <div id="flash-zone">{% include "./_partials/_flash.html.twig" %}</div>
+        </header>
+        <main>
+            {% block body %}{% endblock %}
+        </main>
+        <footer></footer>
+    </body>
+</html>

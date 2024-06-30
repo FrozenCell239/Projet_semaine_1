@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+{% block title %}Inscription{% endblock %}
+{% block body %}
+    <h1>Inscription</h1>
+    {{ form_errors(registrationForm) }}
+    {{ form_start(registrationForm) }}
+        {{ form_row(
+            registrationForm.username,
+            {label: "Nom d'utilisateur (identifiant de connexion)"}
+        ) }}
+        {{ form_row(
+            registrationForm.full_name,
+            {label: "Nom complet"}
+        ) }}
+        {{ form_row(
+            registrationForm.plainPassword,
+            {label: "Mot de passe"}
+        ) }}
+        {{ form_row(
+            registrationForm.agreeTerms,
+            {label: "J'accepte les fameuses conditions que je ne lis jamais, etc..."}
+        ) }}
+        <button type="submit" class="btn">S'inscrire</button>
+    {{ form_end(registrationForm) }}
+{% endblock %}

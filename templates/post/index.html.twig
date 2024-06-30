@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+{% block title %}Mes posts{% endblock %}
+{% block body %}
+    <h1>Mes posts</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Content</th>
+                <th>Url</th>
+                <th>Updated_at</th>
+                <th>Slug</th>
+                <th>Created_at</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for post in posts %}
+            <tr>
+                <td>{{ post.id }}</td>
+                <td>{{ post.title }}</td>
+                <td>{{ post.content }}</td>
+                <td>{{ post.url ? post.url : "Aucun" }}</td>
+                <td>{{ post.updatedAt ? post.updatedAt|date('Y-m-d H:i:s') : "" }}</td>
+                <td>{{ post.slug }}</td>
+                <td>{{ post.createdAt ? post.createdAt|date('Y-m-d H:i:s') : "" }}</td>
+                <td>
+                    <a href="{{ path('app_post_show', {'id': post.id}) }}">Détails</a>
+                    <a href="{{ path('app_post_edit', {'id': post.id}) }}">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">Vous n'avez créé aucun post pour le moment.</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ path('app_post_new') }}">Créer un post</a>
+{% endblock %}

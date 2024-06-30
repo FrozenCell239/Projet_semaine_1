@@ -1,0 +1,271 @@
+/* Colors */
+/* Box borders */
+/* Paddings */
+/* Flash message box */
+/* Forms */
+/* Generals */
+:root {
+  font-size: 24px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: whitesmoke;
+}
+
+html, body {
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+}
+
+body {
+  background-color: #0f0f0f;
+  position: absolute;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  padding: 0 100px 0 100px;
+  align-items: center;
+}
+main p, main h1 {
+  text-align: center;
+  width: 80%;
+}
+
+h1 {
+  font-size: 1.9rem;
+  margin: 10px 0 10px 0;
+}
+
+a {
+  color: whitesmoke;
+}
+
+/* Post cards */
+article {
+  box-shadow: 0 0 1rem gray;
+  border-radius: 2rem;
+  border: solid 5px #aaaaaa;
+  padding: 1rem 2rem 1rem 2rem;
+}
+article p {
+  font-size: 20px;
+}
+article h2 {
+  padding: 0;
+  margin: 0;
+}
+
+/* Flash message boxes */
+#flash-zone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 10rem 0 10rem;
+  min-height: 5vh;
+  background-color: #0f0f0f;
+}
+
+.danger-flash {
+  background-color: #550000;
+  display: grid;
+  grid-template-columns: 5% 90% 5%;
+  box-shadow: 0 0 0.5rem gray;
+  border: 2px solid;
+  border-radius: 2rem;
+  border-color: #aa3939;
+  min-height: 30px;
+  width: 100%;
+  font-weight: 300;
+  font-size: 1rem;
+  text-align: center;
+  padding: 0.5rem;
+  margin-bottom: 5px;
+}
+.danger-flash p {
+  margin: 0;
+  padding: 0;
+  grid-column: 2;
+}
+.danger-flash button {
+  display: inline-flex;
+  align-items: center;
+  justify-self: end;
+  grid-column: 3;
+  border: none;
+  background: none;
+  text-decoration: none;
+  font-size: 2rem;
+  color: rgb(222, 66, 66);
+  float: right;
+  line-height: 0.6;
+  cursor: pointer;
+  border-radius: 2rem;
+}
+.danger-flash button:hover {
+  color: rgb(172, 16, 16);
+}
+@media screen and (max-width: 480px) {
+  .danger-flash {
+    max-width: 87vw;
+  }
+}
+@-moz-document url-prefix() {
+  .danger-flash button {
+    font-size: 1.55rem;
+    font-weight: bold;
+  }
+}
+
+.info-flash {
+  background-color: #061639;
+  display: grid;
+  grid-template-columns: 5% 90% 5%;
+  box-shadow: 0 0 0.5rem gray;
+  border: 2px solid;
+  border-radius: 2rem;
+  border-color: #2e4372;
+  min-height: 30px;
+  width: 100%;
+  font-weight: 300;
+  font-size: 1rem;
+  text-align: center;
+  padding: 0.5rem;
+  margin-bottom: 5px;
+}
+.info-flash p {
+  margin: 0;
+  padding: 0;
+  grid-column: 2;
+}
+.info-flash button {
+  display: inline-flex;
+  align-items: center;
+  justify-self: end;
+  grid-column: 3;
+  border: none;
+  background: none;
+  text-decoration: none;
+  font-size: 2rem;
+  color: rgb(222, 66, 66);
+  float: right;
+  line-height: 0.6;
+  cursor: pointer;
+  border-radius: 2rem;
+}
+.info-flash button:hover {
+  color: rgb(172, 16, 16);
+}
+@media screen and (max-width: 480px) {
+  .info-flash {
+    max-width: 87vw;
+  }
+}
+@-moz-document url-prefix() {
+  .info-flash button {
+    font-size: 1.55rem;
+    font-weight: bold;
+  }
+}
+
+.warning-flash {
+  background-color: #553900;
+  display: grid;
+  grid-template-columns: 5% 90% 5%;
+  box-shadow: 0 0 0.5rem gray;
+  border: 2px solid;
+  border-radius: 2rem;
+  border-color: #aa8439;
+  min-height: 30px;
+  width: 100%;
+  font-weight: 300;
+  font-size: 1rem;
+  text-align: center;
+  padding: 0.5rem;
+  margin-bottom: 5px;
+}
+.warning-flash p {
+  margin: 0;
+  padding: 0;
+  grid-column: 2;
+}
+.warning-flash button {
+  display: inline-flex;
+  align-items: center;
+  justify-self: end;
+  grid-column: 3;
+  border: none;
+  background: none;
+  text-decoration: none;
+  font-size: 2rem;
+  color: rgb(222, 66, 66);
+  float: right;
+  line-height: 0.6;
+  cursor: pointer;
+  border-radius: 2rem;
+}
+.warning-flash button:hover {
+  color: rgb(172, 16, 16);
+}
+@media screen and (max-width: 480px) {
+  .warning-flash {
+    max-width: 87vw;
+  }
+}
+@-moz-document url-prefix() {
+  .warning-flash button {
+    font-size: 1.55rem;
+    font-weight: bold;
+  }
+}
+
+.success-flash {
+  background-color: #004400;
+  display: grid;
+  grid-template-columns: 5% 90% 5%;
+  box-shadow: 0 0 0.5rem gray;
+  border: 2px solid;
+  border-radius: 2rem;
+  border-color: #2e882e;
+  min-height: 30px;
+  width: 100%;
+  font-weight: 300;
+  font-size: 1rem;
+  text-align: center;
+  padding: 0.5rem;
+  margin-bottom: 5px;
+}
+.success-flash p {
+  margin: 0;
+  padding: 0;
+  grid-column: 2;
+}
+.success-flash button {
+  display: inline-flex;
+  align-items: center;
+  justify-self: end;
+  grid-column: 3;
+  border: none;
+  background: none;
+  text-decoration: none;
+  font-size: 2rem;
+  color: rgb(222, 66, 66);
+  float: right;
+  line-height: 0.6;
+  cursor: pointer;
+  border-radius: 2rem;
+}
+.success-flash button:hover {
+  color: rgb(172, 16, 16);
+}
+@media screen and (max-width: 480px) {
+  .success-flash {
+    max-width: 87vw;
+  }
+}
+@-moz-document url-prefix() {
+  .success-flash button {
+    font-size: 1.55rem;
+    font-weight: bold;
+  }
+}/*# sourceMappingURL=app.css.map */

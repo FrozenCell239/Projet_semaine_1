@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{ post.title }}{% endblock %}
+{% block body %}
+<h1>{{ post.title }}</h1>
+<summary>{{ post.summary }}</summary>
+<p>{{ post.content }}</p>
+{% if post.url %}
+<p>URL liée : <a href="{{ post.url }}">{{ post.url }}</a></p>
+{% endif %}
+<p>Posté le {{ post.createdAt|date("d/m/Y") }} par {{ post.author.fullName }}</p>
+{% endblock %}
