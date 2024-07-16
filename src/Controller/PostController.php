@@ -18,6 +18,11 @@ class PostController extends AbstractController
     #[Route('/', name: 'app_post_index', methods: ['GET'])]
     public function index(PostRepository $postRepository): Response
     {
+        // Forbid access to not logged in users
+        if(!$this->getUser()){
+            return $this->redirectToRoute('app_login');
+        };
+
         return $this->render('post/index.html.twig', [
             'posts' => $postRepository->findAll(),
         ]);
@@ -30,6 +35,11 @@ class PostController extends AbstractController
         SluggerInterface $slugger
     ): Response
     {
+        // Forbid access to not logged in users
+        if(!$this->getUser()){
+            return $this->redirectToRoute('app_login');
+        };
+
         $post = new Post();
         $form = $this->createForm(PostType::class, $post);
         $form->handleRequest($request);
@@ -53,6 +63,11 @@ class PostController extends AbstractController
     #[Route('/{id}', name: 'app_post_show', methods: ['GET'])]
     public function show(Post $post): Response
     {
+        // Forbid access to not logged in users
+        if(!$this->getUser()){
+            return $this->redirectToRoute('app_login');
+        };
+
         return $this->render('post/show.html.twig', [
             'post' => $post,
         ]);
@@ -66,6 +81,11 @@ class PostController extends AbstractController
         SluggerInterface $slugger
     ): Response
     {
+        // Forbid access to not logged in users
+        if(!$this->getUser()){
+            return $this->redirectToRoute('app_login');
+        };
+
         $form = $this->createForm(PostType::class, $post);
         $form->handleRequest($request);
 
@@ -87,7 +107,12 @@ class PostController extends AbstractController
     #[Route('/{id}', name: 'app_post_delete', methods: ['POST'])]
     public function delete(Request $request, Post $post, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$post->getId(), $request->getPayload()->getString('_token'))) {
+        // Forbid access to not logged in users
+        if(!$this->getUser()){
+            return $this->redirectToRoute('app_login');
+        };
+
+        if($this->isCsrfTokenValid('delete'.$post->getId(), $request->getPayload()->getString('_token'))){
             $entityManager->remove($post);
             $entityManager->flush();
         }
