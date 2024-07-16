@@ -17,7 +17,6 @@ class PostType extends AbstractType
             ->add('title')
             ->add('summary')
             ->add('content')
-            ->add('url')
             ->add('author', EntityType::class, [
                 'class' => User::class,
                 'choice_label' => 'id',
