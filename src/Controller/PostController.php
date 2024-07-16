@@ -24,7 +24,7 @@ class PostController extends AbstractController
         };
 
         return $this->render('post/index.html.twig', [
-            'posts' => $postRepository->findAll(),
+            'posts' => $postRepository->findBy(['author' => $this->getUser()]),
         ]);
     }
 
@@ -60,12 +60,17 @@ class PostController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_post_show', methods: ['GET'])]
+    #[Route('/{id}/show', name: 'app_post_show', methods: ['GET'])]
     public function show(Post $post): Response
     {
         // Forbid access to not logged in users
         if(!$this->getUser()){
             return $this->redirectToRoute('app_login');
+        };
+
+        // Forbid users to see posts that they don't own
+        if($post->getAuthor() != $this->getUser()){
+            return $this->redirectToRoute('app_index');
         };
 
         return $this->render('post/show.html.twig', [
@@ -86,6 +91,11 @@ class PostController extends AbstractController
             return $this->redirectToRoute('app_login');
         };
 
+        // Forbid users to edit posts that they don't own
+        if($post->getAuthor() != $this->getUser()){
+            return $this->redirectToRoute('app_index');
+        };
+
         $form = $this->createForm(PostType::class, $post);
         $form->handleRequest($request);
 
@@ -104,12 +114,17 @@ class PostController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_post_delete', methods: ['POST'])]
+    #[Route('/{id}/delete', name: 'app_post_delete', methods: ['POST'])]
     public function delete(Request $request, Post $post, EntityManagerInterface $entityManager): Response
     {
         // Forbid access to not logged in users
         if(!$this->getUser()){
             return $this->redirectToRoute('app_login');
+        };
+
+        // Forbid users to delete posts that they don't own
+        if($post->getAuthor() != $this->getUser()){
+            return $this->redirectToRoute('app_index');
         };
 
         if($this->isCsrfTokenValid('delete'.$post->getId(), $request->getPayload()->getString('_token'))){
