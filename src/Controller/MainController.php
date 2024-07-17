@@ -29,9 +29,4 @@ class MainController extends AbstractController {
         $post = $post_repo->findOneBy(['slug' => $slug]);
         return $this->render('main/see_post.html.twig', compact('post'));
     }
-
-    #[Route('/contact', name: 'app_contact')]
-    public function contact() : Response {
-        return $this->render('main/contact.html.twig');
-    }
 }
