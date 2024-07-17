@@ -48,6 +48,9 @@ class PostController extends AbstractController
             # Setting up the slug
             $post->setSlug($slugger->slug($post->getTitle()));
 
+            # Setting up the author
+            $post->setAuthor($this->getUser());
+
             $entityManager->persist($post);
             $entityManager->flush();
 
