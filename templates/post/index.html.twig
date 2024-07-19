@@ -5,24 +5,22 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Content</th>
-                <th>Updated_at</th>
-                <th>Slug</th>
-                <th>Created_at</th>
+                <th>Titre</th>
+                <th>Résumé</th>
+                <th>Contenu</th>
+                <th>Créé le</th>
+                <th>Modifié le</th>
                 <th>actions</th>
             </tr>
         </thead>
         <tbody>
         {% for post in posts %}
             <tr>
-                <td>{{ post.id }}</td>
                 <td>{{ post.title }}</td>
+                <td>{{ post.summary }}</td>
                 <td>{{ post.content }}</td>
-                <td>{{ post.updatedAt ? post.updatedAt|date('Y-m-d H:i:s') : "" }}</td>
-                <td>{{ post.slug }}</td>
                 <td>{{ post.createdAt ? post.createdAt|date('Y-m-d H:i:s') : "" }}</td>
+                <td>{{ post.updatedAt ? post.updatedAt|date('Y-m-d H:i:s') : "" }}</td>
                 <td>
                     <a href="{{ path('app_post_show', {'id': post.id}) }}">Détails</a>
                     <a href="{{ path('app_post_edit', {'id': post.id}) }}">Modifier</a>
@@ -30,7 +28,7 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="8">Vous n'avez créé aucun post pour le moment.</td>
+                <td colspan="6">Vous n'avez créé aucun post pour le moment.</td>
             </tr>
         {% endfor %}
         </tbody>

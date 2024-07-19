@@ -42,11 +42,13 @@ article{
     box-shadow: 0 0 1rem gray;
     border-radius: $default_rounding;
     border: solid 5px #aaaaaa;
-    padding: 1rem 2rem 1rem 2rem;
-    p{
+    padding: 1rem 50px 1rem 50px;
+    display: flex;
+    flex-direction: column;
+    p, summary{
         font-size: 20px;
     }
-    h2{
+    h2, h1{
         padding: 0;
         margin: 0;
     }

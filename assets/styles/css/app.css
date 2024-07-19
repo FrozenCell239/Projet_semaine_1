@@ -83,12 +83,14 @@ article {
   box-shadow: 0 0 1rem gray;
   border-radius: 2rem;
   border: solid 5px #aaaaaa;
-  padding: 1rem 2rem 1rem 2rem;
+  padding: 1rem 50px 1rem 50px;
+  display: flex;
+  flex-direction: column;
 }
-article p {
+article p, article summary {
   font-size: 20px;
 }
-article h2 {
+article h2, article h1 {
   padding: 0;
   margin: 0;
 }
