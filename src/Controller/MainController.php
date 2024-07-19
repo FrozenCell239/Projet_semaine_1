@@ -12,6 +12,12 @@ class MainController extends AbstractController {
     #[Route('/', name: 'app_index')]
     public function index(PostRepository $post_repo) : Response {
         $posts = $post_repo->findAll();
+        foreach ($posts as $post){
+            $summary_length = strlen($post->getSummary());
+            if($summary_length > 128){
+                $post->setSummary(substr($post->getSummary(), 0, 127)."...");
+            };
+        };
         return $this->render('main/index.html.twig', compact('posts'));
     }
 

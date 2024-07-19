@@ -18,10 +18,11 @@ body{
     background-color: $background_color;
     position: absolute;
 }
+header{
+    padding: 20px 50px 20px 50px;
+}
 main{
-    display: flex;
-    flex-direction: column;
-    padding: 0 100px 0 100px;
+    padding: 0 50px 0 50px;
     align-items: center;
     p, h1{
         text-align: center;
@@ -64,3 +65,24 @@ article{
 .info-flash{@include flash-box(#2e4372, #061639);}
 .warning-flash{@include flash-box(#aa8439, #553900);}
 .success-flash{@include flash-box(#2e882e, #004400);}
+
+/* Forms */
+form{
+    @extend %form;
+    box-shadow: 0 0 1rem gray;
+    border-radius: $default_rounding;
+    border: solid 5px #dddddd;
+    padding: 1rem 2rem 1rem 2rem;
+    flex-direction: column;
+}
+
+/* Posts zone */
+#posts-zone{
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    > * {
+        max-width: 60vw;
+        margin: 10px 0 20px 0;
+    }
+}

@@ -3,6 +3,41 @@
 /* Paddings */
 /* Flash message box */
 /* Forms */
+form {
+  display: flex;
+  font-size: 0.8rem;
+  border: 2px solid whitesmoke;
+  border-radius: 2rem;
+  padding: 50px 50px 45px 50px;
+  justify-content: center;
+}
+form input, form button {
+  border: 2px solid whitesmoke;
+  border-radius: 2rem;
+  color: whitesmoke;
+}
+form p, form button {
+  align-self: center;
+}
+form button {
+  padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+  font-size: 0.8rem;
+  width: auto;
+  background-color: rgb(22, 32, 42);
+}
+form p {
+  padding: 0;
+  margin: 0;
+}
+form input {
+  margin: 5px 0 20px 0;
+  background-color: rgb(40, 50, 60);
+  min-height: 32px;
+  max-height: 32px;
+  font-size: 0.8rem;
+  width: 100%;
+}
+
 /* Generals */
 :root {
   font-size: 24px;
@@ -21,10 +56,12 @@ body {
   position: absolute;
 }
 
+header {
+  padding: 20px 50px 20px 50px;
+}
+
 main {
-  display: flex;
-  flex-direction: column;
-  padding: 0 100px 0 100px;
+  padding: 0 50px 0 50px;
   align-items: center;
 }
 main p, main h1 {
@@ -268,4 +305,24 @@ article h2 {
     font-size: 1.55rem;
     font-weight: bold;
   }
+}
+
+/* Forms */
+form {
+  box-shadow: 0 0 1rem gray;
+  border-radius: 2rem;
+  border: solid 5px #dddddd;
+  padding: 1rem 2rem 1rem 2rem;
+  flex-direction: column;
+}
+
+/* Posts zone */
+#posts-zone {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+}
+#posts-zone > * {
+  max-width: 60vw;
+  margin: 10px 0 20px 0;
 }/*# sourceMappingURL=app.css.map */
