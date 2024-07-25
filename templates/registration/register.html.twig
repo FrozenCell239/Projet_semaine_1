@@ -9,6 +9,10 @@
             {label: "Nom d'utilisateur (identifiant de connexion)"}
         ) }}
         {{ form_row(
+            registrationForm.email,
+            {label: "Adresse mail"}
+        ) }}
+        {{ form_row(
             registrationForm.full_name,
             {label: "Nom complet"}
         ) }}

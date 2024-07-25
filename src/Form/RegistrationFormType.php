@@ -18,13 +18,12 @@ class RegistrationFormType extends AbstractType
     {
         $builder
             ->add('username')
+            ->add('email')
             ->add('full_name')
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
                 'constraints' => [
-                    new IsTrue([
-                        'message' => "You should agree to our terms.",
-                    ]),
+                    new IsTrue(['message' => "Vous devez accepter nos conditions d'utilisation."]),
                 ],
             ])
             ->add('plainPassword', PasswordType::class, [
@@ -33,14 +32,11 @@ class RegistrationFormType extends AbstractType
                 'mapped' => false,
                 'attr' => ['autocomplete' => 'new-password'],
                 'constraints' => [
-                    new NotBlank([
-                        'message' => "Please enter a password",
-                    ]),
+                    new NotBlank(['message' => "Veuillez saisir un mot de passe."]),
                     new Length([
-                        'min' => 6,
-                        'minMessage' => "Your password should be at least {{ limit }} characters",
-                        // max length allowed by Symfony for security reasons
-                        'max' => 4096,
+                        'min' => 8,
+                        'minMessage' => "Votre mot de passe doit comporter {{ limit }} caractères ou plus.",
+                        'max' => 4096, //Max length allowed by Symfony for security reasons.
                     ]),
                 ],
             ])
@@ -49,8 +45,6 @@ class RegistrationFormType extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->setDefaults([
-            'data_class' => User::class,
-        ]);
+        $resolver->setDefaults(['data_class' => User::class]);
     }
 }

@@ -30,6 +30,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 180)]
     private ?string $username = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $email = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $full_name = null;
+
     /**
      * @var list<string> The user roles
      */
@@ -42,14 +48,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $full_name = null;
-
     /**
      * @var Collection<int, Post>
      */
     #[ORM\OneToMany(targetEntity: Post::class, mappedBy: 'author')]
     private Collection $posts;
+
+    #[ORM\Column]
+    private bool $isVerified = false;
 
     public function __construct()
     {
@@ -70,6 +76,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setUsername(string $username): static
     {
         $this->username = $username;
+
+        return $this;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): static
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    public function getFullName(): ?string
+    {
+        return $this->full_name;
+    }
+
+    public function setFullName(string $full_name): static
+    {
+        $this->full_name = $full_name;
 
         return $this;
     }
@@ -132,18 +162,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // $this->plainPassword = null;
     }
 
-    public function getFullName(): ?string
-    {
-        return $this->full_name;
-    }
-
-    public function setFullName(string $full_name): static
-    {
-        $this->full_name = $full_name;
-
-        return $this;
-    }
-
     /**
      * @return Collection<int, Post>
      */
@@ -170,6 +188,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $post->setAuthor(null);
             }
         }
+
+        return $this;
+    }
+
+    public function isVerified(): bool
+    {
+        return $this->isVerified;
+    }
+
+    public function setVerified(bool $isVerified): static
+    {
+        $this->isVerified = $isVerified;
 
         return $this;
     }

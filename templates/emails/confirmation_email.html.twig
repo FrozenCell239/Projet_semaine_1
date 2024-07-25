@@ -1,0 +1,13 @@
+<h1>Confirmation de votre adresse mail</h1>
+<hr>
+<p>Bonjour {{ userFullName }} !</p>
+<p>
+    Afin d'utiliser notre blog de manière optimale, vous devez confirmer votre adresse mail en cliquant <a href="{{ signedUrl|raw }}">ici</a>.
+</p>
+<p style="font-style: italic;">
+    Notez que ce lien expire dans {{ expiresAtMessageKey|trans(expiresAtMessageData, 'VerifyEmailBundle')[:1] }} heures.
+</p>
+<p>
+    Cordialement,<br>
+    L'équipe de Guitar Eel !
+</p>
