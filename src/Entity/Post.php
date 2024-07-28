@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Entity\Trait\CreatedAtTrait;
 use App\Repository\PostRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -36,10 +38,22 @@ class Post
     #[ORM\Column(length: 255)]
     private ?string $slug = null;
 
+    /**
+     * @var Collection<int, Image>
+     */
+    #[ORM\OneToMany(
+        targetEntity: Image::class,
+        mappedBy: 'post',
+        orphanRemoval: true,
+        cascade: ['persist']
+    )]
+    private Collection $images;
+
     public function __construct()
     {
         $this->created_at = new \DateTimeImmutable();
         $this->updated_at = new \DateTimeImmutable();
+        $this->images = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -115,6 +129,36 @@ class Post
     public function setSlug(string $slug): static
     {
         $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Image>
+     */
+    public function getImages(): Collection
+    {
+        return $this->images;
+    }
+
+    public function addImage(Image $image): static
+    {
+        if (!$this->images->contains($image)) {
+            $this->images->add($image);
+            $image->setPost($this);
+        }
+
+        return $this;
+    }
+
+    public function removeImage(Image $image): static
+    {
+        if ($this->images->removeElement($image)) {
+            // set the owning side to null (unless already changed)
+            if ($image->getPost() === $this) {
+                $image->setPost(null);
+            }
+        }
 
         return $this;
     }

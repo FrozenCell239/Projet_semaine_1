@@ -16,6 +16,10 @@ return [
         'path' => './assets/app.js',
         'entrypoint' => true,
     ],
+    'image_delete' => [
+        'path' => './assets/image_delete.js',
+        'entrypoint' => true,
+    ],
     '@hotwired/stimulus' => [
         'version' => '3.2.2',
     ],

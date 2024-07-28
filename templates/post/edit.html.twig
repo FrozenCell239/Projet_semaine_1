@@ -1,8 +1,11 @@
 {% extends 'base.html.twig' %}
 {% block title %}Modifier un post{% endblock %}
+{% block javascripts %}
+    {% block importmap %}{{ importmap(['app', 'image_delete']) }}{% endblock %}
+{% endblock %}
 {% block body %}
     <h1>Modifier un post</h1>
-    {{ include('post/_form.html.twig', {'button_label': 'Enregistrer'}) }}
+    {{ include('post/_form.html.twig', {'button_label': "Enregistrer"}) }}
     <a href="{{ path('app_post_index') }}">Retour</a>
     {{ include('post/_delete_form.html.twig') }}
 {% endblock %}

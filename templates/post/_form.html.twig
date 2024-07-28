@@ -1,4 +1,28 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Poster') }}</button>
+    {{ form_row(form.title) }}
+    {{ form_row(form.summary) }}
+    {{ form_row(form.content) }}
+
+    {# Get images when edit mode #}
+    {% if app.request.attributes.get('_route') == 'app_post_edit' %}
+        <h6>Images actuelles</h6>
+        <div>
+        {% for image in post.images %}
+            <div>
+                <img
+                    src="{{ asset('assets/uploads/posts/mini/300x300-' ~ image.name) }}"
+                    alt="{{ image.name }}"
+                    width="150"
+                >
+                </img>
+                <a href="{{ path('app_post_image_delete', {id: image.id}) }}" data-delete data-token="{{ csrf_token('delete' ~ image.id) }}">
+                    Supprimer
+                </a>
+            </div>
+        {% endfor %}
+        </div>
+    {% endif %}
+
+    {{ form_row(form.images)}}
+    <button class="btn">{{ button_label|default("Poster") }}</button>
 {{ form_end(form) }}
