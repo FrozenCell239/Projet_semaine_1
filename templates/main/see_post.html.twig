@@ -5,6 +5,6 @@
     <h1>{{ post.title }}</h1>
     <summary>{{ post.summary }}</summary>
     <p>{{ post.content }}</p>
-    <p>Posté le {{ post.createdAt|date("d/m/Y") }} par {{ post.author.fullName }}</p>
+    <p>Posté le {{ post.createdAt|date("d/m/Y") }} par {{ post.author.nickname }}</p>
 </article>
 {% endblock %}

@@ -58,7 +58,7 @@ class RegistrationController extends AbstractController
                     ->to($user->getEmail())
                     ->subject("Vérification de votre adresse email")
                     ->htmlTemplate('emails/confirmation_email.html.twig')
-                    ->context(['userFullName' => $user->getFullName()])
+                    ->context(['userNickname' => $user->getNickname()])
             );
 
             return $security->login($user, 'form_login', 'main');
