@@ -10,7 +10,7 @@
     color: $font_main_color;
 }
 html, body{
-    height: 100vh;
+    height: 110vh;
     width: 100vw;
     margin: 0;
 }
@@ -22,6 +22,7 @@ header{
     padding: 20px 50px 20px 50px;
 }
 main{
+    min-height: 100vh;
     padding: 0 50px 0 50px;
     align-items: center;
     p, h1{
@@ -30,16 +31,35 @@ main{
     }
 }
 footer{
+    height: 10vh;
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+    background-color: #090909;
 }
 h1{
     font-size: 1.9rem;
     margin: 10px 0 10px 0;
 }
 a{
+    position: relative;
+    text-decoration: none;
     color: $font_main_color;
+}
+a::before{
+    content: "";
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: $font_main_color;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+a:hover::before, a:active::before{
+    transform: scaleX(1);
 }
 
 /* Post cards */
@@ -74,7 +94,7 @@ article{
 .success-flash{@include flash-box(#2e882e, #004400);}
 
 /* Forms */
-form{
+.form{
     @extend %form;
     box-shadow: 0 0 1rem gray;
     border-radius: $default_rounding;
@@ -87,9 +107,13 @@ form{
 #posts-zone{
     margin-top: 50px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    max-inline-size: 3;
     > * {
-        max-width: 60vw;
+        width: 30vw;
+        height: 50vh;
         margin: 10px 0 20px 0;
     }
 }
