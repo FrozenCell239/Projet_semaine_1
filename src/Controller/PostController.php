@@ -52,7 +52,7 @@ class PostController extends AbstractController
 
         if($form->isSubmitted() && $form->isValid()){
             # Setting up the slug
-            $post->setSlug($slugger->slug($post->getTitle()));
+            $post->setSlug($slugger->slug($post->getTitle())->lower());
 
             # Setting up the author
             $post->setAuthor($this->getUser());
@@ -129,7 +129,7 @@ class PostController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             # Setting up the slug
-            $post->setSlug($slugger->slug($post->getTitle()));
+            $post->setSlug($slugger->slug($post->getTitle())->lower());
 
             # Getting the images
             $images = $form->get('images')->getData();
