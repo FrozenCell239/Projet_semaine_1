@@ -10,6 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Serializer\Attribute\Groups;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: '`user`')]
@@ -34,6 +35,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $email = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['post_preview'])]
     private ?string $nickname = null;
 
     /**
@@ -92,14 +94,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getFullName(): ?string
+    public function getNickname(): ?string
     {
-        return $this->full_name;
+        return $this->nickname;
     }
 
-    public function setFullName(string $full_name): static
+    public function setNickname(string $nickname): static
     {
-        $this->full_name = $full_name;
+        $this->nickname = $nickname;
 
         return $this;
     }

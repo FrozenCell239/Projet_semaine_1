@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Attribute\Groups;
 
 #[ORM\Entity(repositoryClass: PostRepository::class)]
 class Post
@@ -21,21 +22,27 @@ class Post
 
     #[ORM\ManyToOne(inversedBy: 'posts')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Groups(['post_preview'])]
     private ?User $author = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['post_preview'])]
     private ?string $title = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Groups(['post_preview'])]
     private ?string $summary = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Groups(['post_details'])]
     private ?string $content = null;
 
     #[ORM\Column]
+    #[Groups(['post_details'])]
     private ?\DateTimeImmutable $updated_at = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['post_preview'])] //Added this one so the we can get the post's link later
     private ?string $slug = null;
 
     /**
