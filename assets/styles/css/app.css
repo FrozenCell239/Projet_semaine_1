@@ -112,6 +112,7 @@ article {
   border-radius: 2rem;
   border: solid 5px #aaaaaa;
   padding: 1rem 50px 1rem 50px;
+  margin-bottom: 50px;
   display: flex;
   flex-direction: column;
 }
