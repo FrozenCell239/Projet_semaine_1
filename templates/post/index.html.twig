@@ -7,10 +7,9 @@
             <tr>
                 <th>Titre</th>
                 <th>Résumé</th>
-                <th>Contenu</th>
                 <th>Créé le</th>
                 <th>Modifié le</th>
-                <th>actions</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -18,7 +17,6 @@
             <tr>
                 <td>{{ post.title }}</td>
                 <td>{{ post.summary }}</td>
-                <td>{{ post.content }}</td>
                 <td>{{ post.createdAt ? post.createdAt|date('Y-m-d H:i:s') : "" }}</td>
                 <td>{{ post.updatedAt ? post.updatedAt|date('Y-m-d H:i:s') : "" }}</td>
                 <td>
@@ -28,7 +26,7 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="6">Vous n'avez créé aucun post pour le moment.</td>
+                <td colspan="5">Vous n'avez créé aucun post pour le moment.</td>
             </tr>
         {% endfor %}
         </tbody>
