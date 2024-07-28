@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+{% block title %}Contacter l'assistance{% endblock %}
+{% block body %}
+<h1>Suggestion ou demande d'assistance</h1>
+{{ form_start(contact_form) }}
+    {{ form_row(
+        contact_form.email,
+        {label: "Votre adresse mail"}
+    ) }}
+    {{ form_row(
+        contact_form.message,
+        {label: "Votre message/demande"}
+    ) }}
+    <button type="submit">Envoyer</button>
+{{ form_end(contact_form) }}
+{% endblock %}
