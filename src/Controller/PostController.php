@@ -79,7 +79,12 @@ class PostController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/show', name: 'app_post_show', methods: ['GET'])]
+    #[Route(
+        '/{id}/show',
+        name : 'app_post_show',
+        requirements: ['id' => '[0-9]+'],
+        methods: ['GET']
+    )]
     public function show(Post $post): Response
     {
         # Forbid access to not logged in users
@@ -95,7 +100,12 @@ class PostController extends AbstractController
         return $this->render('post/show.html.twig', ['post' => $post]);
     }
 
-    #[Route('/{id}/edit', name: 'app_post_edit', methods: ['GET', 'POST'])]
+    #[Route(
+        '/{id}/edit',
+        name: 'app_post_edit',
+        requirements: ['id' => '[0-9]+'],
+        methods: ['GET', 'POST']
+    )]
     public function edit(
         Request $request,
         Post $post,
@@ -142,7 +152,12 @@ class PostController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/delete', name: 'app_post_delete', methods: ['POST'])]
+    #[Route(
+        '/{id}/delete',
+        name: 'app_post_delete',
+        requirements: ['id' => '[0-9]+'],
+        methods: ['POST']
+    )]
     public function delete(
         Request $request,
         Post $post,
@@ -182,7 +197,12 @@ class PostController extends AbstractController
         return $this->redirectToRoute('app_post_index', [], Response::HTTP_SEE_OTHER);
     }
 
-    #[Route('/delete/image/{id}', name: 'app_post_image_delete', methods: ['DELETE'])]
+    #[Route(
+        '/delete/image/{id}',
+        name: 'app_post_image_delete',
+        requirements: ['id' => '[0-9]+'],
+        methods: ['DELETE']
+    )]
     public function imageDelete(
         Image $image,
         Request $request,
