@@ -5,24 +5,24 @@
 
     {# Get images when edit mode #}
     {% if app.request.attributes.get('_route') == 'app_post_edit' %}
-        <h6>Images actuelles</h6>
-        <div>
         {% for image in post.images %}
-            <div>
-                <img
-                    src="{{ asset('assets/uploads/posts/mini/300x300-' ~ image.name) }}"
-                    alt="{{ image.name }}"
-                    width="150"
-                >
-                </img>
-                <a href="{{ path('app_post_image_delete', {id: image.id}) }}" data-delete data-token="{{ csrf_token('delete' ~ image.id) }}">
-                    Supprimer
-                </a>
-            </div>
-        {% endfor %}
+        {% if loop.first %}
+        <label for="current-images">Image(s) actuelle(s)</label>
+        {% endif %}
+        <div id="current-images">
+            <img
+                src="{{ asset('assets/uploads/posts/mini/300x300-' ~ image.name) }}"
+                alt="{{ image.name }}"
+                width="150"
+            >
+            </img>
+            <a href="{{ path('app_post_image_delete', {id: image.id}) }}" data-delete data-token="{{ csrf_token('delete' ~ image.id) }}">
+                Supprimer
+            </a>
         </div>
+        {% endfor %}
     {% endif %}
 
-    {{ form_row(form.images)}}
+    {{ form_row(form.images, {label: "Ajouter une/des image(s)"}) }}
     <button class="btn">{{ button_label|default("Poster") }}</button>
 {{ form_end(form) }}

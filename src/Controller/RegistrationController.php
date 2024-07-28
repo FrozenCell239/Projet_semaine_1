@@ -29,17 +29,19 @@ class RegistrationController extends AbstractController
         EntityManagerInterface $entityManager
     ) : Response
     {
-        // Forbid access to logged in users
+        # Forbid access to logged in users
         if($this->getUser()){
             return $this->redirectToRoute('app_index');
         };
 
+        # Creating the registration form
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 
+        # Checking if the form is submitted and is valid
         if ($form->isSubmitted() && $form->isValid()) {
-            // Encoding the plain password
+            # Encoding the plain password
             $user->setPassword(
                 $userPasswordHasher->hashPassword(
                     $user,
@@ -47,11 +49,11 @@ class RegistrationController extends AbstractController
                 )
             );
 
-            // Saving the user
+            # Saving the user
             $entityManager->persist($user);
             $entityManager->flush();
 
-            // Generating a signed URL and emailing it to the user
+            # Generating a signed URL and emailing it to the user
             $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
                 (new TemplatedEmail())
                     ->from(new Address('no-reply@eel.dev', 'The Guitar Eel Team'))
@@ -61,9 +63,15 @@ class RegistrationController extends AbstractController
                     ->context(['userNickname' => $user->getNickname()])
             );
 
+            # Logging in the user if the registration was successful
+            $this->addFlash(
+                'success',
+                "Votre compte a été créé avec succès ! Un email de confirmation a été envoyé à votre adresse email."
+            );
             return $security->login($user, 'form_login', 'main');
         }
 
+        # Displaying the form
         return $this->render('registration/register.html.twig', [
             'registrationForm' => $form,
         ]);
@@ -74,7 +82,7 @@ class RegistrationController extends AbstractController
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
-        // validate email confirmation link, sets User::isVerified=true and persists
+        # validate email confirmation link, sets User::isVerified=true and persists
         try {
             $this->emailVerifier->handleEmailConfirmation($request, $this->getUser());
         } catch (VerifyEmailExceptionInterface $exception) {
